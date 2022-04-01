@@ -106,3 +106,13 @@
 ## 3.4 修改操作系统的引导顺序
 
 请参考"Docs/修改启动项顺序.md"
+
+## 3.5 Macos和Windows时间相差了8个小时
+
+原因在于：
+
+Windows和MacOSX缺省看待PC的CMOS记录的时钟是不一样的。Windows将这个时钟作为本地时间来看待，也就是CMOS时间就是北京时间。
+
+MacOSX将这个时钟作为Coordinated Universal Time (UTC) 世界标准时间看待，也就是Greenwich Mean Time (GMT) 格林威志时间。所以如果你在MacOSX和Windows都选北京时间作为本地时区是，一旦连到互联网上，同步过时间后，就会造成时间的不一致
+
+在Windows下Win+R，输入regedit进入注册表，到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\下--->在右侧窗口新增一项DWORD，命名为RealTimeIsUniversal，并将值设置为1。接着，重新同步一下时间即可。
