@@ -116,3 +116,13 @@ Windows和MacOSX缺省看待PC的CMOS记录的时钟是不一样的。Windows将
 MacOSX将这个时钟作为Coordinated Universal Time (UTC) 世界标准时间看待，也就是Greenwich Mean Time (GMT) 格林威志时间。所以如果你在MacOSX和Windows都选北京时间作为本地时区是，一旦连到互联网上，同步过时间后，就会造成时间的不一致
 
 在Windows下Win+R，输入regedit进入注册表，到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\下--->在右侧窗口新增一项DWORD，命名为RealTimeIsUniversal，并将值设置为1。接着，重新同步一下时间即可。
+
+## 3.6 更新OpenCore之后macOS下不能识别
+
+使用NVRAM工具，清除一下NVRAM并重启即可识别到新的OpenCore版本。
+
+## 3.7 AMD显卡开机亮Logo之后黑屏
+
+我这里使用的显卡为AMD 6800XT，需要添加启动参数`agdpmod=pikera`，然后解决。
+
+![](./Docs/images/amd%E6%98%BE%E5%8D%A1%E6%98%BE%E7%A4%BA%E9%BB%91%E5%B1%8F.png)
